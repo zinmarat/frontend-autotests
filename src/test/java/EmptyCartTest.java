@@ -1,19 +1,20 @@
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static com.codeborne.selenide.Condition.*;
 
-public class EmptyBinTest {
+public class EmptyCartTest {
 
     @BeforeAll
     public static void setup() {
         Configuration.browser = "chrome";
+        Configuration.headless = false;
         Configuration.timeout = TestConfig.TIMEOUT;
+        System.setProperty("chromeoptions.prefs",
+                "profile.password_manager_leak_detection=false");
     }
 
     @BeforeEach
@@ -24,6 +25,7 @@ public class EmptyBinTest {
         $("#login-button").click();
     }
 
+    @Test
     public void emptyCartTest() {
         // Проверка 1: значка корзины нет
         $(".shopping_cart_badge").shouldNot(exist);
