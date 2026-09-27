@@ -1,6 +1,6 @@
 target/
+build/
 .idea/
 *.iml
-.mvn/
 *.log
 *.class
