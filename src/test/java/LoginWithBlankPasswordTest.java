@@ -6,16 +6,16 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class LoginWithBlankPasswordTest {
-        @BeforeEach
-        public void openLoginPage() {
-            open("https://www.saucedemo.com/");
-        }
-
-        @Test
-        public void login() {
-          $("[data-test='username']").setValue("standard_user");
-          $("[data-test='password']").setValue("");
-          $("[data-test='login-button']").click();
-          $("[data-test='error']").shouldHave(text("Epic sadface: Password is required"));
-        }
+    @BeforeEach
+    public void openLoginPage() {
+        open(TestConfig.BASE_URL);
     }
+
+    @Test
+    public void login() {
+        $("[data-test='username']").setValue(TestConfig.STANDARD_USER);
+        $("[data-test='password']").setValue(TestConfig.EMPTY);
+        $("[data-test='login-button']").click();
+        $("[data-test='error']").shouldHave(text("Epic sadface: Password is required"));
+    }
+}
