@@ -10,10 +10,8 @@ public class LoginWithWrongPasswordTest {
         }
 
         @Test
-        public void login() {
-          $("[data-test='username']").setValue(TestConfig.STANDARD_USER);
-          $("[data-test='password']").setValue(TestConfig.WRONG_PASSWORD);
-          $("[data-test='login-button']").click();
+        public void loginWithWrongPasswordTest() {
+         LoginSteps.loginWithWrongPassword();
           $("[data-test='error']").shouldHave(text("Epic sadface: Username and password do not match any user in this service"));
         }
     }
