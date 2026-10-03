@@ -1,6 +1,8 @@
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Condition.*;
 
@@ -14,15 +16,20 @@ public class CartSelenideTest {
 
         System.setProperty("chromeoptions.prefs",
                 "profile.password_manager_leak_detection=false");
+
+    }
+
+    @BeforeEach
+
+    public void openLoginPage() {
+        open(TestConfig.BASE_URL);
     }
 
     @Test
     public void addToCartTest() {
         // 1. Открываем сайт и логинимся
-        open(TestConfig.BASE_URL);
-        $("#user-name").setValue(TestConfig.STANDARD_USER);
-        $("#password").setValue(TestConfig.STANDARD_PASSWORD);
-        $("#login-button").click();
+
+        LoginSteps.loginAsStandardUser();
 
         // 2. Находим все кнопки "Add to cart" и кликаем по первой
         $$(".btn_inventory").first().click();

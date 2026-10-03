@@ -21,10 +21,7 @@ public class AddThreeItemsTest {
     @BeforeEach
     public void login() {
         open(TestConfig.BASE_URL);
-        $("#user-name").setValue(TestConfig.STANDARD_USER);
-        $("#password").setValue(TestConfig.STANDARD_PASSWORD);
-        $("#login-button").click();
-        $(".inventory_list").shouldBe(visible);   // дождались логина
+        LoginSteps.loginAsStandardUser();
     }
 
     @Test
@@ -41,6 +38,5 @@ public class AddThreeItemsTest {
         // Умное ожидание: 3 товара в корзине
         $$(".cart_item").shouldHave(size(3));
 
-        Selenide.screenshot("cart_with_items");
     }
 }
